@@ -12,6 +12,8 @@ const auth = async (req, res, next) => {
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
+    const user = User.findById(payload.id).select("-password");
+    req.user = user;
     // attach user to routes
     req.user = { userId: payload.userId, name: payload.name };
     next();
@@ -20,4 +22,4 @@ const auth = async (req, res, next) => {
   }
 };
 
-module.exports = auth
+module.exports = auth;

@@ -15,7 +15,7 @@ const todoSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["start", "process", "finished"],
-      default: "pending",
+      default: "start",
     },
     createdBy: {
       type: mongoose.Types.ObjectId,
